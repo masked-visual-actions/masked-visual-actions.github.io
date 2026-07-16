@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real-World Policy Evaluation &mdash; Gallery</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../style.css" />
+  <style>
+    .gallery-back {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .gallery-back:hover { text-decoration: underline; }
+    .gallery-sub { color: var(--fg-soft); font-size: 1rem; margin: 0.5rem auto 0; max-width: 60ch; }
+    .demo { margin: 1.75rem 0; }
+    .demo + .demo { border-top: 1px solid var(--border); padding-top: 1.75rem; }
+    .demo-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--fg-muted);
+      margin: 0 0 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <a class="gallery-back" href="../../index.html">&#8592; Back to project page</a>
+      <h1 class="title">Real-World Policy Evaluation</h1>
+      <p class="gallery-sub">
+        Original (real) vs Control (URDF) vs Generated across four tasks &mdash; 20 demonstrations each.
+      </p>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Section navigation">
+    <div class="container section-nav-inner">
+      <a href="#bag">Bag</a>
+      <a href="#block">Block</a>
+      <a href="#towel">Towel</a>
+      <a href="#drawer">Drawer</a>
+    </div>
+  </nav>
+
+  <section class="section" id="bag">
+    <div class="container">
+      <h2>Bag</h2>
+      <p class="lede">&ldquo;a robot arm attempting to pick up an orange and placing it in a bag&rdquo;</p>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 1</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo00_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo00_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo00_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 2</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo01_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo01_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo01_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 3</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo02_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo02_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo02_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 4</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo03_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo03_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo03_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 5</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo04_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo04_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo04_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 6</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo05_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo05_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo05_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 7</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo06_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo06_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo06_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 8</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo07_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo07_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo07_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 9</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo08_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo08_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo08_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 10</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo09_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo09_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo09_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 11</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo10_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo10_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo10_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 12</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo11_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo11_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo11_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 13</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo12_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo12_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo12_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 14</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo13_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo13_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo13_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 15</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo14_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo14_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo14_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 16</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo15_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo15_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo15_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 17</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo16_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo16_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo16_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 18</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo17_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo17_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo17_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 19</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo18_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo18_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo18_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 20</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/bag/bag_demo19_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo19_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/bag/bag_demo19_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="block">
+    <div class="container">
+      <h2>Block</h2>
+      <p class="lede">&ldquo;a robot arm attempting to pick up and stack colored blocks&rdquo;</p>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 1</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo00_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo00_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo00_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 2</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo01_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo01_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo01_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 3</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo02_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo02_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo02_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 4</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo03_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo03_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo03_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 5</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo04_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo04_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo04_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 6</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo05_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo05_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo05_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 7</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo06_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo06_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo06_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 8</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo07_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo07_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo07_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 9</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo08_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo08_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo08_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 10</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo09_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo09_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo09_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 11</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo10_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo10_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo10_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 12</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo11_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo11_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo11_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 13</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo12_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo12_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo12_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 14</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo13_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo13_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo13_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 15</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo14_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo14_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo14_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 16</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo15_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo15_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo15_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 17</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo16_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo16_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo16_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 18</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo17_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo17_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo17_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 19</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo18_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo18_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo18_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 20</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/block/block_demo19_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo19_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/block/block_demo19_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="towel">
+    <div class="container">
+      <h2>Towel</h2>
+      <p class="lede">&ldquo;a robot arm attempting to pick up a towel and placing it in a bowl&rdquo;</p>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 1</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo00_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo00_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo00_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 2</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo01_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo01_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo01_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 3</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo02_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo02_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo02_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 4</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo03_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo03_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo03_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 5</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo04_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo04_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo04_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 6</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo05_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo05_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo05_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 7</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo06_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo06_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo06_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 8</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo07_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo07_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo07_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 9</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo08_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo08_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo08_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 10</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo09_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo09_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo09_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 11</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo10_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo10_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo10_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 12</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo11_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo11_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo11_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 13</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo12_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo12_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo12_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 14</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo13_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo13_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo13_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 15</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo14_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo14_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo14_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 16</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo15_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo15_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo15_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 17</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo16_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo16_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo16_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 18</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo17_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo17_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo17_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 19</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo18_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo18_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo18_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 20</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/towel/towel_demo19_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo19_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/towel/towel_demo19_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="drawer">
+    <div class="container">
+      <h2>Drawer</h2>
+      <p class="lede">&ldquo;a robot arm attempting to close a drawer&rdquo;</p>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 1</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo00_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo00_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo00_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 2</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo01_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo01_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo01_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 3</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo02_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo02_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo02_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 4</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo03_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo03_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo03_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 5</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo04_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo04_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo04_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 6</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo05_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo05_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo05_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 7</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo06_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo06_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo06_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 8</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo07_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo07_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo07_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 9</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo08_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo08_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo08_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 10</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo09_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo09_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo09_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 11</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo10_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo10_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo10_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 12</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo11_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo11_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo11_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 13</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo12_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo12_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo12_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 14</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo13_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo13_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo13_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 15</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo14_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo14_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo14_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 16</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo15_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo15_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo15_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 17</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo16_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo16_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo16_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 18</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo17_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo17_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo17_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 19</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo18_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo18_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo18_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <article class="demo">
+        <h3 class="demo-title">Demo 20</h3>
+        <div class="cmp-grid cmp-grid--3">
+          <div class="cell-label">Original (real)</div>
+          <div class="cell-label">Control (URDF)</div>
+          <div class="cell-label">Generated</div>
+
+          <video class="vid-cell" src="videos/drawer/drawer_demo19_original.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo19_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="videos/drawer/drawer_demo19_generated.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masked Visual Actions for Unified World Modeling</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="theme_aurora.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1 class="title">Masked Visual Actions<br/>for Unified World Modeling</h1>
+
+      <ol class="authors">
+        <li><a href="https://hadizayer.github.io">Hadi Alzayer</a><sup>1,2</sup></li>
+        <li><a href="https://wenlonghuang.com">Wenlong Huang</a><sup>1</sup></li>
+        <li><a href="https://haonan16.github.io">Haonan Chen</a><sup>1,3</sup></li>
+        <li><a href="https://www.linkedin.com/in/christopher-luey/">Christopher Luey</a><sup>1</sup></li>
+        <li><a href="https://lllyasviel.github.io/lvmin_zhang/">Lvmin Zhang</a><sup>1</sup></li>
+        <li><a href="https://graphics.stanford.edu/~maneesh/">Maneesh Agrawala</a><sup>1</sup></li>
+        <li><a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a><sup>1</sup></li>
+        <li><a href="https://profiles.stanford.edu/fei-fei-li">Li Fei-Fei</a><sup>1</sup></li>
+        <li><a href="https://yilundu.github.io">Yilun Du</a><sup>3</sup></li>
+        <li><a href="https://jiajunwu.com">Jiajun Wu</a><sup>1</sup></li>
+        <li><a href="https://jbhuang0604.github.io">Jia-Bin Huang</a><sup>2</sup></li>
+      </ol>
+
+      <ol class="affiliations">
+        <li><sup>1</sup>Stanford University</li>
+        <li><sup>2</sup>University of Maryland, College Park</li>
+        <li><sup>3</sup>Harvard University</li>
+      </ol>
+
+      <nav class="links" aria-label="Resource links">
+        <!-- TODO: replace href="#" with the arXiv abstract URL -->
+        <a class="link-btn" href="#" aria-label="Paper on arXiv">
+          <span class="link-ico" aria-hidden="true">&#128196;</span> Paper
+        </a>
+        <!-- TODO: replace href="#" with the GitHub repository URL -->
+        <a class="link-btn" href="#" aria-label="Code on GitHub">
+          <span class="link-ico" aria-hidden="true">&lt;/&gt;</span> Code
+        </a>
+        <a class="link-btn" href="#bibtex" aria-label="BibTeX citation">
+          <span class="link-ico" aria-hidden="true">&#8220;&#8221;</span> BibTeX
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Section navigation">
+    <div class="container section-nav-inner">
+      <a href="#tldr">TL;DR</a>
+      <a href="#overview">Overview</a>
+      <a href="#inverse-modeling">Inverse Modeling</a>
+      <a href="#policy-eval">Policy Evaluation</a>
+      <a href="#conditioning">Conditioning Ablation</a>
+      <a href="#comparison">Baseline Comparison</a>
+      <a href="#failure-cases">Failure Cases</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+  </nav>
+
+  <section class="section" id="teaser">
+    <div class="container">
+      <div class="carousel" data-carousel>
+        <button class="car-btn prev" data-prev aria-label="Previous example">&#8249;</button>
+        <button class="car-btn next" data-next aria-label="Next example">&#8250;</button>
+        <div class="carousel-track" data-track data-per-view="2"></div>
+        <div class="dots" data-dots></div>
+      </div>
+      <p class="teaser-cap">
+        Given a reference frame and a <em>masked visual action</em>, our model generates the
+        resulting video. <em>All embodiments shown here are unseen during training.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="tldr">
+    <div class="container">
+      <div class="tldr">
+        <span class="tldr-tag">TL;DR</span>
+        <!-- TODO: replace with the final one-sentence summary -->
+        <p class="tldr-text">
+          What is the right way to interact with video world models? We introduce <em>masked visual actions</em>, a simple action representation that generalizes to unseen robots and objects. Simply reveal parts of the video, and the video model will complete the rest of the scene.
+          <!-- We condition a video world model on <em>masked visual actions</em> &mdash; a simple,
+          embodiment-agnostic action representation &mdash; enabling a single model to generalize
+          across robots, scenes, and tasks unseen during training. -->
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="container">
+      <h2>Overview</h2>
+      <p class="lede">
+        <!-- TODO: replace with your description of the overview figure -->
+        Our video world model simply takes a reference frame of a scene, and a masked visual action video (of a robot moving, or target object motion), and the model outputs a video of the scene that follows the provided masked visual actions.
+        In the forward modeling case, where the action is a rendering of the robot actions, the model simulates the effect of the robot on the scene. On the other hand in the inverse modeling setting, where the masked visual actions demonstrate goal object motion, the model synthesizes the robot motion that would achieve the goal object motion. 
+      </p>
+      <figure class="overview-fig">
+        <img src="assets/images/overview.png"
+             alt="Overview figure describing masked visual actions and its applications" />
+        <!-- TODO: optional detailed caption -->
+        <figcaption>
+          Using our unified world model for forward modeling can be used for planning (where we evaluate the best trajectory out of N proposals), or policy evaluation (judging the policy actions without executing it in the real world). On the other hand, using the video model as an inverse model, we can use an Inverse Dynamics Model to extract the robot actions proposed by the video model to achieve the desired object goal motion.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="inverse-modeling">
+    <div class="container">
+      <h2>Inverse Modeling</h2>
+      <p class="lede">
+        Despite only training on masked visual actions (of robots), an emergent capability of our model is taking masked visual actions of objects and generating the robot motion that satisfies the masked visual actions.
+      </p>
+
+      <figure class="single-ref">
+        <img src="assets/cup_vids/cup_ref.png" alt="Reference frame" />
+        <figcaption>Reference frame</figcaption>
+      </figure>
+
+      <div class="io-flow">
+        <div class="io-col">
+          <div class="cell-label">Masked visual action</div>
+          <video class="vid-cell" src="assets/cup_vids/cup1_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="io-arrow" aria-hidden="true">&#8595;</div>
+          <div class="cell-label">Robot motion</div>
+          <video class="vid-cell" src="assets/cup_vids/cup1_output.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="io-col">
+          <div class="cell-label">Masked visual action</div>
+          <video class="vid-cell" src="assets/cup_vids/cup2_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="io-arrow" aria-hidden="true">&#8595;</div>
+          <div class="cell-label">Robot motion</div>
+          <video class="vid-cell" src="assets/cup_vids/cup2_output.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="io-col">
+          <div class="cell-label">Masked visual action</div>
+          <video class="vid-cell" src="assets/cup_vids/cup3_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="io-arrow" aria-hidden="true">&#8595;</div>
+          <div class="cell-label">Robot motion</div>
+          <video class="vid-cell" src="assets/cup_vids/cup3_output.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </div>
+
+      <article class="example">
+        <h3 class="example-title">Where can we get masked visual actions of objects?</h3>
+        <p>
+          One natural source is a <em>human demonstration</em>. We can extract a masked visual action
+          from a person performing the task, and our model will generate the robot motion that matches it.
+        </p>
+        <div class="cmp-grid cmp-grid--2">
+          <div class="cell-label">Human demonstration</div>
+          <div class="cell-label">Generated robot motion</div>
+
+          <video class="vid-cell" src="assets/cup_vids/cup2_demonstration.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/cup_vids/cup2_output.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+      <p class="more-link">
+        <a href="#more-inverse-results" data-toggle="more-inverse">View more results for inverse modeling &#8594;</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="more-inverse-results">
+    <div class="container">
+      <details class="collapsible" id="more-inverse">
+        <summary>Additional inverse modeling results</summary>
+        <div class="collapsible-body">
+          <p class="lede">
+            Here we show additoinal results from our model in the inverse modeling setting.
+          </p>
+
+          <div class="cmp-grid cmp-grid--3">
+        <div class="cell-label">Reference</div>
+        <div class="cell-label">Masked visual action</div>
+        <div class="cell-label">Output</div>
+
+        <!-- example1: pick-place -->
+        <img        class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example1/initial_rgb.png" alt="Reference" />
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example1/key_object_rgb.mp4"                            autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example1/pick-place-counter-to-stove__ep000421__cand485.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+        <!-- example2: coffee-serve-mug -->
+        <img        class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example2/initial_rgb.png" alt="Reference" />
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example2/key_object_rgb.mp4"                  autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example2/coffee-serve-mug__ep000084__cand294.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+        <!-- example3: open-drawer -->
+        <img        class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example3/initial_rgb.png" alt="Reference" />
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example3/key_object_rgb.mp4"                 autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example3/open-drawer__ep000144__cand909.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+        <!-- example4: droid 195 -->
+        <img        class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example4/episode_000195_seed123_reference.png" alt="Reference" />
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example4/episode_000195_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example4/episode_000195_seed123.mp4"         autoplay loop muted playsinline preload="metadata"></video>
+
+        <!-- example5: droid 226 -->
+        <img        class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example5/episode_000226_seed123_reference.png" alt="Reference" />
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example5/episode_000226_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/inverse_modeling/robocasa_and_droid/example5/episode_000226_seed123.mp4"         autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="policy-eval">
+    <div class="container">
+      <h2>Policy Evaluation</h2>
+      <p class="lede">
+        Our model can be used to evaluate the policy's action without needing to execute them in the real world. Here we show how our world model's simulated output is aligned with the real world execution (<em>GT</em>).
+      </p>
+
+    
+
+      <!-- <article class="example">
+        <h3 class="example-title">RoboCasa &mdash; Close Microwave</h3>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">Reference</div>
+            <img class="ref-img" src="assets/policy_eval/robocasa_close_microwave/reference_image.png" alt="Reference image" />
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Ours</div>
+            <div class="cell-label">Ground truth</div>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/cond1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/output1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/gt1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/cond2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/output2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/gt2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="example">
+        <h3 class="example-title">RoboCasa &mdash; Open Drawer</h3>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">Reference</div>
+            <img class="ref-img" src="assets/policy_eval/robocasa_open_drawer/reference.png" alt="Reference image" />
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Ours</div>
+            <div class="cell-label">Ground truth</div>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/cond1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/output1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/gt1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/cond2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/output2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/gt2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article> 
+ -->
+
+      <article class="example">
+        <h3 class="example-title">Real-World &mdash; Towel</h3>
+        <p class="example-note">
+          We also collect demonstrations from the real world, and show that different action trajectories lead to different outcomes. On the towel example, note that the model matches the ground truth demonstration on when the towel gets picked up and when it doesn't.
+        </p>
+        <div class="cmp-grid cmp-grid--4">
+          <div class="cell-label">Reference</div>
+          <div class="cell-label">Masked visual action</div>
+          <div class="cell-label">Ours</div>
+          <div class="cell-label">Ground truth</div>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/towel/ep09_seed789_reference.png"     alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel/cond_ep09_seed789_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel/render_ep09_seed789.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel/gt_ep09_seed789_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_reference.png"     alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_control.mp4"     autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/rendering_ep10_seed456.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_gt.mp4"          autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+
+      <article class="example">
+        <h3 class="example-title">Real-World &mdash; Plushie</h3>
+        <p class="example-note">
+          Two trials starting from a similar reset state. Reset states cannot be reproduced
+          exactly in the real world, so each trial has its own reference image.
+        </p>
+        <div class="cmp-grid cmp-grid--4">
+          <div class="cell-label">Reference</div>
+          <div class="cell-label">Masked visual action</div>
+          <div class="cell-label">Ours</div>
+          <div class="cell-label">Ground truth</div>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/plushie/ep20_seed123_reference.png"    alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/cond_ep20_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/rendering_ep20_seed123.mp4"    autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/gt_ep20_seed123_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_reference.png"   alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_control.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/rendering_ep21_seed456.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+        <p class="lede">
+        See our full real-world demonstrations alongside the model simulation across four different tasks
+        <a href="assets/luey_gallery/index.html" target="_blank" rel="noopener">here</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="conditioning">
+    <div class="container">
+      <h2>Why Masked Visual Actions?</h2>
+      <p class="lede">
+        <b>Generalization!</b> As we showed earlier, Visual Masked Actions are so generalizable, they can work for objects as well as diverse unseen robots. </br>
+        To further illustrate the advantage of Masked Visual Actions, we finetune the same base model on visualizations of the robot <em>Skeleton</em>, and <em>End-Effector (EEF)</em> &mdash; on the
+        same scene. All were trained on the same data from DROID. The real-world data we captured was using the same robot as droid but with custom unseen gripper. In BEHAVIOR, we use a completely unseen embodiment to all models.
+      </p>
+
+      <article class="example">
+        <h3 class="example-title">DROID (Training domain)</h3>
+        <p>As expected, all variants perform similarly on the training distribution.</p>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">GT</div>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/gt.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Skeleton</div>
+            <div class="cell-label">EEF</div>
+
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/rendering_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/skel_control.mp4"      autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/eef_control.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/rendering.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/skel.mp4"      autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/droid/ep28/eef.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article>
+
+      <article class="example">
+        <h3 class="example-title">Unseen robot gripper</h3>
+        <p>Here we see that unlike our method, conditioning on the skeleton or EEF causes the model to transform the robot to match the embodiment seen during training, or would simply introduce another robot into the video. The top row shows each action visualization, and below it the resulting output.</p>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">GT</div>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/ep02_gt.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Skeleton</div>
+            <div class="cell-label">EEF</div>
+
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/render_ep02_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/skel_ep02_seed123_control.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/eef_ep02_seed456_control-2.mp4"  autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/render_ep02_seed123.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/skel_ep02_seed123.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/ablation_actions/our_real_world/towel/eef_ep02_seed456.mp4"    autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article>
+
+      <article class="example">
+        <h3 class="example-title">Unseen embodiment</h3>
+        <p>Similarly with using a bimanual robot, our method generalizes well to the unseen embodiment while the other conditioning signals completely collapse. The top row shows each action visualization, and below it the resulting output.</p>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">GT</div>
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/gt_episode_000501_seed456_og_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Skeleton</div>
+            <div class="cell-label">EEF</div>
+
+            <!-- TODO: add this action video — assets/comparison_with_baselines/BEHAVIOR/ep50/rendering_000501_seed456_control.mp4 -->
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/rendering_000501_seed456_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/skel_000501_seed123_control.mp4"      autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/eef_000501_seed456_control.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/rendering_episode_000501_seed456.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/skel_episode_000501_seed123.mp4"      autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep50/eef_000501_seed456.mp4"               autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="comparison">
+    <div class="container">
+      <h2>Comparison with Baselines</h2>
+      <p class="lede">
+        We compare our method conditioned on Masked Visual Actions against Ctrl-World (both are trained on DROID), and also include Wan-Move (trajectory conditioned video model), and Wan2.2 I2V as a reference.
+      </p>
+
+      <!-- DROID -->
+      <h3 class="example-title">DROID</h3>
+      <div class="cmp-grid cmp-grid--5">
+        <div class="cell-label">GT</div>
+        <div class="cell-label">Ours</div>
+        <div class="cell-label">Ctrl-World</div>
+        <div class="cell-label">Wan-Move</div>
+        <div class="cell-label">Wan-I2V</div>
+
+        <!-- <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep16/gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep16/rendering.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep16/ctrlworld.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep16/wanmove.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep16/i2v.mp4"       autoplay loop muted playsinline preload="metadata"></video> -->
+
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep27/gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep27/rendering.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep27/ctrlworld.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep27/wanmove.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/droid/ep27/i2v.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+      </div>
+
+      <!-- BEHAVIOR -->
+      <h3 class="example-title">BEHAVIOR</h3>
+      <p>BEHAVIOR uses a bimanual embodiment unseen during training for both our method and Ctrl-world. However, we find that our method generalizes more gracefully.</p>
+      <div class="cmp-grid cmp-grid--3">
+        <div class="cell-label">GT</div>
+        <div class="cell-label">Ours</div>
+        <div class="cell-label">Ctrl-World</div>
+
+        <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep4/og.mp4"               autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep4/wan2.2_rendering.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep4/ctrl_world.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+
+        <!-- <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep13/gt_episode_000013_seed123_og_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep13/rendering_episode_000013_seed123.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/comparison_with_baselines/BEHAVIOR/ep13/ctrl_world.mp4"                          autoplay loop muted playsinline preload="metadata"></video> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="failure-cases">
+    <div class="container">
+      <h2>Failure Cases</h2>
+      <p class="lede">
+        Our model can fail in cases where precise and subtle interaction is needed and may produce unnatural interactions in those cases. Additionally, the model may produce artifacts surrounding regions completely unseen in the reference frame, as the mug example is not showing the handle in the initial image.
+      </p>
+
+      <div class="cmp-grid cmp-grid--4">
+        <div class="cell-label">Reference</div>
+        <div class="cell-label">Masked visual action</div>
+        <div class="cell-label">Ours</div>
+        <div class="cell-label">Ground truth</div>
+
+        <img        class="vid-cell" src="assets/failure_cases/example1/ep00_seed123_reference.png" alt="Reference" />
+        <video class="vid-cell" src="assets/failure_cases/example1/ep00_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/failure_cases/example1/ep00_seed123.mp4"         autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/failure_cases/example1/ep00_seed123_gt.mp4"      autoplay loop muted playsinline preload="metadata"></video>
+
+        <img        class="vid-cell" src="assets/failure_cases/example2/ep18_seed123_reference.png" alt="Reference" />
+        <video class="vid-cell" src="assets/failure_cases/example2/ep18_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/failure_cases/example2/ep18_seed123.mp4"         autoplay loop muted playsinline preload="metadata"></video>
+        <video class="vid-cell" src="assets/failure_cases/example2/ep18_seed123_gt.mp4"      autoplay loop muted playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bibtex">
+    <div class="container">
+      <h2>BibTeX</h2>
+      <p class="lede">If you find this work useful, please consider citing it.</p>
+      <!-- TODO: replace the arXiv id / eprint with the real one once posted -->
+      <pre class="bibtex"><code>@article{alzayer2026maskedvisualactions,
+  title   = {Masked Visual Actions for Unified World Modeling},
+  author  = {Alzayer, Hadi and Huang, Wenlong and Chen, Haonan and
+             Luey, Christopher and Zhang, Lvmin and Agrawala, Maneesh and
+             Wetzstein, Gordon and Fei-Fei, Li and Du, Yilun and
+             Wu, Jiajun and Huang, Jia-Bin},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+    </div>
+  </section>
+
+
+  <script>
+    // "View more results" links open their target <details> and scroll to it
+    document.querySelectorAll('a[data-toggle]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.getElementById(link.dataset.toggle);
+        if (!target) return;
+        e.preventDefault();
+        target.open = true;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // ----- Teaser carousel: inputs on top, output below (2-up), advancing when the output finishes -----
+    const TB = 'assets/teaser_vids/';
+    const TEASER_EXAMPLES = [
+      { label: 'Towel',       ref: 'towel_demo01_reference.png',  control: 'towel_demo01_control.mp4',  output: 'towel_demo01_generated.mp4' },
+      { label: 'Orangutan',   ref: 'orangutan_reference.png',     control: 'orangutan_control.mp4',     output: 'orangutan_output.mp4' },
+      { label: 'Orange mug',  ref: 'orange_mug_reference.png',    control: 'orange_mug_control.mp4',    output: 'orange_mug_output.mp4' },
+      { label: 'Snake robot', ref: 'snake_robot_reference.png',   control: 'snake_robot_control.mp4',   output: 'snake_robot_output.mp4' },
+      { label: 'R1 Pro',      ref: 'r1pro_reference.png',         control: 'r1pro_control.mp4',         output: 'r1pro_output.mp4' },
+      { label: 'BEHAVIOR1k',    ref: 'behavior_reference.png',      control: 'behavior_control.mp4',      output: 'behavior_output.mp4' },
+      { label: 'Bag',         ref: 'bag_demo02_reference.png',    control: 'bag_demo02_control.mp4',    output: 'bag_demo02_generated.mp4' },
+      { label: 'Coffee mug',  ref: 'coffee_mug_reference.png',    control: 'coffee_mug_control.mp4',    output: 'coffee_mug_output.mp4' },
+      { label: 'Drawer',      ref: 'drawer_demo01_reference.png', control: 'drawer_demo01_control.mp4', output: 'drawer_demo01_generated.mp4' },
+      
+    ];
+    const teaserSlide = ex => `
+      <div class="slide">
+        <div class="slide-tag">${ex.label}</div>
+        <div class="stack io-v2">
+          <div class="io-panel io-panel-in">
+            <div class="io-head">Inputs</div>
+            <div class="inputs-row">
+              <div><div class="cell-label">Reference</div><img class="vid-cell" src="${TB}${ex.ref}" alt="reference"></div>
+              <div><div class="cell-label">Masked visual action</div><video class="vid-cell" src="${TB}${ex.control}" autoplay loop muted playsinline></video></div>
+            </div>
+          </div>
+          <div class="io-panel io-panel-out">
+            <div class="io-head">Output</div>
+            <video class="vid-cell drives" src="${TB}${ex.output}" autoplay muted playsinline></video>
+          </div>
+        </div>
+      </div>`;
+
+    document.querySelectorAll('[data-carousel]').forEach(car => {
+      const track = car.querySelector('[data-track]');
+      const dotsWrap = car.querySelector('[data-dots]');
+      const perView = Math.max(1, parseInt(track.dataset.perView || '1', 10));
+      track.style.setProperty('--per', perView);
+
+      track.innerHTML = TEASER_EXAMPLES.map(teaserSlide).join('');
+      const slides = [...track.querySelectorAll('.slide')];
+      const numStops = Math.max(1, TEASER_EXAMPLES.length - perView + 1);
+
+      dotsWrap.innerHTML = Array.from({ length: numStops }, (_, i) =>
+        `<button class="dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Go to position ${i + 1}"></button>`
+      ).join('');
+      const dots = [...dotsWrap.children];
+
+      const step = () => {
+        const s = track.querySelector('.slide');
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return s.getBoundingClientRect().width + gap;
+      };
+      const curIndex = () => Math.round(track.scrollLeft / step());
+      const wrap = i => ((i % numStops) + numStops) % numStops;
+      const goto = i => track.scrollTo({ left: wrap(i) * step(), behavior: 'smooth' });
+
+      let paused = false;
+      const restartStop = i => {
+        for (let k = i; k < i + perView && k < slides.length; k++) {
+          slides[k].querySelectorAll('video').forEach(v => { v.currentTime = 0; v.play().catch(() => {}); });
+        }
+      };
+      const advance = () => { const n = wrap(curIndex() + 1); goto(n); restartStop(n); };
+      const nav = i => { const n = wrap(i); goto(n); restartStop(n); };
+
+      // advance when the current stop's output video finishes a play-through
+      slides.forEach((slide, si) => {
+        const drv = slide.querySelector('.drives');
+        if (!drv) return;
+        drv.addEventListener('ended', () => {
+          drv.currentTime = 0; drv.play().catch(() => {});
+          if (paused || numStops <= 1) return;
+          if (si === Math.min(numStops - 1, curIndex())) advance();
+        });
+      });
+
+      car.querySelector('[data-prev]').addEventListener('click', () => nav(curIndex() - 1));
+      car.querySelector('[data-next]').addEventListener('click', () => nav(curIndex() + 1));
+      dots.forEach(d => d.addEventListener('click', () => nav(+d.dataset.i)));
+
+      car.addEventListener('mouseenter', () => { paused = true; });
+      car.addEventListener('mouseleave', () => { paused = false; });
+      track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+      track.addEventListener('touchend', () => { paused = false; }, { passive: true });
+
+      let t;
+      track.addEventListener('scroll', () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          const i = Math.min(numStops - 1, curIndex());
+          dots.forEach((d, j) => d.classList.toggle('active', j === i));
+        }, 60);
+      });
+    });
+
+    // ----- Keep paired videos (action ↔ output, and every video in a comparison group) in sync -----
+    // Each visual group locks all its videos to a master's clock via gentle drift correction.
+    // Videos share a 5.4s duration, so this keeps an action frame-aligned with its output as they loop.
+    const syncGroups = [];
+    document.querySelectorAll('.example-grid, .io-col, .cmp-grid, .stack').forEach(container => {
+      const vids = [...container.querySelectorAll('video')];
+      if (vids.length < 2) return;
+      // in the teaser, the output (.drives) is already driven by the carousel — make it the master
+      const master = vids.find(v => v.classList.contains('drives')) || vids[0];
+      syncGroups.push({ master, others: vids.filter(v => v !== master) });
+    });
+
+    const DRIFT = 0.12; // seconds of tolerated drift before correcting
+    function syncTick() {
+      for (const { master, others } of syncGroups) {
+        if (master.readyState < 2 || master.paused || master.seeking) continue;
+        const mt = master.currentTime;
+        const md = master.duration;
+        for (const v of others) {
+          if (v.seeking || v.readyState < 2) continue;
+          // skip clips of a different length (e.g. a baseline of another duration)
+          if (isFinite(v.duration) && isFinite(md) && Math.abs(v.duration - md) > 0.2) continue;
+          if (Math.abs(v.currentTime - mt) > DRIFT) {
+            try { v.currentTime = mt; } catch (e) {}
+          }
+        }
+      }
+      requestAnimationFrame(syncTick);
+    }
+    requestAnimationFrame(syncTick);
+  </script>
+</body>
+</html>

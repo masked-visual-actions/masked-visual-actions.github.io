@@ -1,0 +1,92 @@
+/* ============================================================
+   AURORA THEME  —  layered on top of style.css
+   Vibrant indigo → violet, airy. Solid title, no section numbers.
+   Light only (no dark mode).
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  color-scheme: light;             /* always light — no dark mode */
+  --bg: #fcfcfe;
+  --bg-alt: #f1f0fa;
+  --fg: #17161f;
+  --fg-soft: #4a4859;
+  --fg-muted: #8a8799;
+  --border: #e8e6f2;
+  --accent: #47597d;               /* slate blue */
+  --accent-2: #8494b3;
+  --accent-soft: #eef1f7;
+}
+
+/* Soft aurora wash behind everything */
+body {
+  background:
+    radial-gradient(55rem 38rem at 100% -8%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 60%),
+    radial-gradient(48rem 38rem at -8% 2%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ---- Display type ---- */
+.title, h2, .slide-tag, .tldr-tag, .collapsible > summary {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+/* ---- Hero: solid title in the theme's indigo ---- */
+.hero { background: transparent; padding: 2rem 0 3rem; }
+.title { color: var(--accent); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; }
+
+/* ---- Link buttons: solid ---- */
+.link-btn {
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.link-btn:hover { background: color-mix(in srgb, var(--accent) 88%, black); transform: translateY(-1px); }
+.link-ico { opacity: 0.9; }
+
+/* ---- Sticky nav → floating glass pill ---- */
+.section-nav { background: transparent; border: none; top: 0.6rem; }
+.section-nav-inner {
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin: 0 auto;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 10px 34px -14px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.section-nav-inner a { color: var(--fg-muted); font-weight: 600; }
+.section-nav-inner a:hover { color: var(--accent); }
+
+/* ---- Media cards ---- */
+.vid-cell, .ref-img, .overview-fig img, .bibtex, .collapsible { border-radius: 12px; }
+
+/* ---- Labels & accents ---- */
+.slide-tag { color: var(--accent); }
+.tldr {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: linear-gradient(120deg, var(--accent-soft), transparent 80%);
+}
+.tldr-tag { color: var(--accent); }
+.more-link a { color: var(--accent); }
+
+/* ---- Teaser output panel: make the result glow a touch ---- */
+.io-v2 .io-panel-out {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: 0 10px 26px -16px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+/* ---- Bring remaining labels & markers onto the accent scheme ---- */
+.cell-label,
+.slide-tag,
+.io-arrow,
+.io-v2 .io-panel-in .io-head,
+.single-ref figcaption {
+  color: var(--accent);
+}
+.collapsible > summary::before { color: var(--accent); }
