@@ -39,11 +39,11 @@
 
       <nav class="links" aria-label="Resource links">
         <!-- TODO: replace href="#" with the arXiv abstract URL -->
-        <a class="link-btn" href="#" aria-label="Paper on arXiv">
+        <a class="link-btn" href="paper.pdf" aria-label="Paper on arXiv">
           <span class="link-ico" aria-hidden="true">&#128196;</span> Paper
         </a>
         <!-- TODO: replace href="#" with the GitHub repository URL -->
-        <a class="link-btn" href="#" aria-label="Code on GitHub">
+        <a class="link-btn" href="https://github.com/HadiZayer/masked-visual-actions" aria-label="Code on GitHub">
           <span class="link-ico" aria-hidden="true">&lt;/&gt;</span> Code
         </a>
         <a class="link-btn" href="#bibtex" aria-label="BibTeX citation">
@@ -556,7 +556,10 @@
     document.querySelectorAll('[data-carousel]').forEach(car => {
       const track = car.querySelector('[data-track]');
       const dotsWrap = car.querySelector('[data-dots]');
-      const perView = Math.max(1, parseInt(track.dataset.perView || '1', 10));
+      // one example per view on phones, otherwise the configured count
+      const perView = window.matchMedia('(max-width: 640px)').matches
+        ? 1
+        : Math.max(1, parseInt(track.dataset.perView || '1', 10));
       track.style.setProperty('--per', perView);
 
       track.innerHTML = TEASER_EXAMPLES.map(teaserSlide).join('');

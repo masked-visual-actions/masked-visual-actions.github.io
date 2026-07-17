@@ -451,14 +451,19 @@ h2 {
 }
 
 @media (max-width: 720px) {
-  .cmp-grid--5,
-  .cmp-grid--4,
-  .cmp-grid--3,
-  .cmp-grid--2 {
-    grid-template-columns: 1fr;
+  /* keep comparisons side-by-side (that's the point) and labeled; scroll sideways
+     so each cell stays a usable size instead of collapsing to one column */
+  .cmp-grid {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.3rem 0.35rem;
+    padding-bottom: 0.35rem;
   }
-  /* hide column headers on narrow screens (re-shown via row labels would be nicer, but skip for now) */
-  .cmp-grid > .cell-label { display: none; }
+  .cmp-grid--5 { grid-template-columns: repeat(5, minmax(30vw, 1fr)); }
+  .cmp-grid--4 { grid-template-columns: repeat(4, minmax(32vw, 1fr)); }
+  .cmp-grid--3 { grid-template-columns: repeat(3, minmax(30vw, 1fr)); }
+  .cmp-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cmp-grid > .cell-label { font-size: 0.6rem; letter-spacing: 0.02em; padding: 0; }
 }
 
 /* ---------- Reference frame + action->motion triptych ---------- */
