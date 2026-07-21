@@ -15,7 +15,7 @@
 <body>
   <header class="hero">
     <div class="container">
-      <h1 class="title">Masked Visual Actions<br/>for Unified World Modeling</h1>
+      <h1 class="title"><strong>Masked Visual Actions</strong><br/>for Unified World Modeling</h1>
 
       <ol class="authors">
         <li><a href="https://hadizayer.github.io">Hadi Alzayer</a><sup>1,2</sup></li>
@@ -47,7 +47,7 @@
           <span class="link-ico" aria-hidden="true">&lt;/&gt;</span> Code
         </a>
         <a class="link-btn" href="#bibtex" aria-label="BibTeX citation">
-          <span class="link-ico" aria-hidden="true">&#8220;&#8221;</span> BibTeX
+          BibTeX
         </a>
       </nav>
     </div>
@@ -75,8 +75,8 @@
         <div class="dots" data-dots></div>
       </div>
       <p class="teaser-cap">
-        Given a reference frame and a <em>masked visual action</em>, our model generates the
-        resulting video. <em>All embodiments shown here are unseen during training.</em>
+        <em>Every embodiment shown is unseen during training</em> &mdash; each video generated
+        from a single reference frame and a <em>masked visual action</em>.
       </p>
     </div>
   </section>
@@ -87,7 +87,8 @@
         <span class="tldr-tag">TL;DR</span>
         <!-- TODO: replace with the final one-sentence summary -->
         <p class="tldr-text">
-          What is the right way to interact with video world models? We introduce <em>masked visual actions</em>, a simple action representation that generalizes to unseen robots and objects. Simply reveal parts of the video, and the video model will complete the rest of the scene.
+          How should we interact with video world models? We introduce <em>masked visual actions</em>, a simple representation that generalizes across unseen robots and objects. Reveal part of a video, and the model predicts how the scene unfolds.
+          <!-- What is the right way to interact with video world models? We introduce <em>masked visual actions</em>, a simple action representation that generalizes to unseen robots and objects. Simply reveal parts of the video, and the video model will complete the rest of the scene. -->
           <!-- We condition a video world model on <em>masked visual actions</em> &mdash; a simple,
           embodiment-agnostic action representation &mdash; enabling a single model to generalize
           across robots, scenes, and tasks unseen during training. -->
@@ -100,16 +101,15 @@
     <div class="container">
       <h2>Overview</h2>
       <p class="lede">
-        <!-- TODO: replace with your description of the overview figure -->
-        Our video world model simply takes a reference frame of a scene, and a masked visual action video (of a robot moving, or target object motion), and the model outputs a video of the scene that follows the provided masked visual actions.
-        In the forward modeling case, where the action is a rendering of the robot actions, the model simulates the effect of the robot on the scene. On the other hand in the inverse modeling setting, where the masked visual actions demonstrate goal object motion, the model synthesizes the robot motion that would achieve the goal object motion. 
+        Our video world model takes a reference frame and a masked visual action video, and outputs a video of the scene that follows that action.
+        In the <em>forward</em> setting, the action is a rendering of the robot, and the model simulates the robot's effect on the scene.
+        In the <em>inverse</em> setting, the action is a goal object motion, and the model synthesizes the robot motion that achieves it.
       </p>
       <figure class="overview-fig">
         <img src="assets/images/overview.png"
              alt="Overview figure describing masked visual actions and its applications" />
-        <!-- TODO: optional detailed caption -->
         <figcaption>
-          Using our unified world model for forward modeling can be used for planning (where we evaluate the best trajectory out of N proposals), or policy evaluation (judging the policy actions without executing it in the real world). On the other hand, using the video model as an inverse model, we can use an Inverse Dynamics Model to extract the robot actions proposed by the video model to achieve the desired object goal motion.
+          <em>Forward</em> modeling enables planning &mdash; selecting the best of N proposed trajectories &mdash; and policy evaluation, judging a policy without executing it in the real world. <em>Inverse</em> modeling pairs with an Inverse Dynamics Model to recover the robot actions that produce a desired object motion.
         </figcaption>
       </figure>
     </div>
@@ -494,7 +494,6 @@
   <section class="section" id="bibtex">
     <div class="container">
       <h2>BibTeX</h2>
-      <p class="lede">If you find this work useful, please consider citing it.</p>
       <!-- TODO: replace the arXiv id / eprint with the real one once posted -->
       <pre class="bibtex"><code>@article{alzayer2026maskedvisualactions,
   title   = {Masked Visual Actions for Unified World Modeling},
@@ -524,20 +523,20 @@
     // ----- Teaser carousel: inputs on top, output below (2-up), advancing when the output finishes -----
     const TB = 'assets/teaser_vids/';
     const TEASER_EXAMPLES = [
-      { label: 'Towel',       ref: 'towel_demo01_reference.png',  control: 'towel_demo01_control.mp4',  output: 'towel_demo01_generated.mp4' },
-      { label: 'Orangutan',   ref: 'orangutan_reference.png',     control: 'orangutan_control.mp4',     output: 'orangutan_output.mp4' },
-      { label: 'Orange mug',  ref: 'orange_mug_reference.png',    control: 'orange_mug_control.mp4',    output: 'orange_mug_output.mp4' },
-      { label: 'Snake robot', ref: 'snake_robot_reference.png',   control: 'snake_robot_control.mp4',   output: 'snake_robot_output.mp4' },
+      { label: 'Towel pickup',       ref: 'towel_demo01_reference.png',  control: 'towel_demo01_control.mp4',  output: 'towel_demo01_generated.mp4' },
+      { label: 'Mug motion',  ref: 'orange_mug_reference.png',    control: 'orange_mug_control.mp4',    output: 'orange_mug_output.mp4' },
+      { label: 'Orangutan sawing',   ref: 'orangutan_reference.png',     control: 'orangutan_control.mp4',     output: 'orangutan_output.mp4' },
       { label: 'R1 Pro',      ref: 'r1pro_reference.png',         control: 'r1pro_control.mp4',         output: 'r1pro_output.mp4' },
       { label: 'BEHAVIOR1k',    ref: 'behavior_reference.png',      control: 'behavior_control.mp4',      output: 'behavior_output.mp4' },
-      { label: 'Bag',         ref: 'bag_demo02_reference.png',    control: 'bag_demo02_control.mp4',    output: 'bag_demo02_generated.mp4' },
-      { label: 'Coffee mug',  ref: 'coffee_mug_reference.png',    control: 'coffee_mug_control.mp4',    output: 'coffee_mug_output.mp4' },
-      { label: 'Drawer',      ref: 'drawer_demo01_reference.png', control: 'drawer_demo01_control.mp4', output: 'drawer_demo01_generated.mp4' },
+      { label: 'RoboPanoptes', href: 'https://robopanoptes.github.io', ref: 'snake_robot_reference.png', control: 'snake_robot_control.mp4', output: 'snake_robot_output.mp4' },
+      { label: 'Bagging orange',         ref: 'bag_demo02_reference.png',    control: 'bag_demo02_control.mp4',    output: 'bag_demo02_generated.mp4' },
+      { label: 'Coffee mug replacement',  ref: 'coffee_mug_reference.png',    control: 'coffee_mug_control.mp4',    output: 'coffee_mug_output.mp4' },
+      { label: 'Drawer opening',      ref: 'drawer_demo01_reference.png', control: 'drawer_demo01_control.mp4', output: 'drawer_demo01_generated.mp4' },
       
     ];
     const teaserSlide = ex => `
       <div class="slide">
-        <div class="slide-tag">${ex.label}</div>
+        <div class="slide-tag">${ex.href ? `<a href="${ex.href}" target="_blank" rel="noopener">${ex.label}</a>` : ex.label}</div>
         <div class="stack io-v2">
           <div class="io-panel io-panel-in">
             <div class="io-head">Inputs</div>

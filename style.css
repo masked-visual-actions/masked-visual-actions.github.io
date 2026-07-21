@@ -201,6 +201,12 @@ html { scroll-behavior: smooth; }
   text-align: center;
   margin: 0 0 0.6rem;
 }
+.slide-tag a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.slide-tag a:hover { text-decoration-thickness: 2px; }
 
 .stack .inputs-row {
   display: grid;
@@ -284,6 +290,22 @@ html { scroll-behavior: smooth; }
   margin: 0.1rem 0 0.35rem 0.15rem;
 }
 .io-v2 .inputs-row { gap: 0.4rem; margin-bottom: 0; }
+
+/* On phones the long "Masked visual action" label wraps to two lines while
+   "Reference" stays one line; reserve equal (bottom-aligned) label height so
+   the two input videos stay aligned. */
+@media (max-width: 640px) {
+  /* the section nav is too cramped to be useful on phones */
+  .section-nav { display: none; }
+
+  .io-v2 .inputs-row .cell-label {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    line-height: 1.15;
+    min-height: 2.3em;
+  }
+}
 
 /* ---------- TL;DR ---------- */
 .tldr {
@@ -513,6 +535,8 @@ h2 {
 
 @media (max-width: 720px) {
   .io-flow { grid-template-columns: 1fr; gap: 1rem; }
+  /* the examples are similar; show just one instead of a long stack to scroll through */
+  .io-flow .io-col:nth-child(n + 2) { display: none; }
 }
 
 /* ---------- "View more" link + collapsible section ---------- */
