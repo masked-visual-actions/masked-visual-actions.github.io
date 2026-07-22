@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Masked Visual Actions for Unified World Modeling</title>
 
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -12,7 +17,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="theme_aurora.css" />
   <!-- Academicons: provides the arXiv logo glyph -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" />
 </head>
 <body>
   <header class="hero">
@@ -61,8 +66,8 @@
     <div class="container section-nav-inner">
       <a href="#tldr">TL;DR</a>
       <a href="#overview">Overview</a>
+      <a href="#forward-modeling">Forward Modeling</a>
       <a href="#inverse-modeling">Inverse Modeling</a>
-      <a href="#policy-eval">Policy Evaluation</a>
       <a href="#conditioning">Conditioning Ablation</a>
       <a href="#comparison">Baseline Comparison</a>
       <a href="#failure-cases">Failure Cases</a>
@@ -116,6 +121,120 @@
           <em>Forward</em> modeling enables planning &mdash; selecting the best of N proposed trajectories &mdash; and policy evaluation, judging a policy without executing it in the real world. <em>Inverse</em> modeling pairs with an Inverse Dynamics Model to recover the robot actions that produce a desired object motion.
         </figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="section" id="forward-modeling">
+    <div class="container">
+      <h2>Forward Modeling</h2>
+      <p class="lede">
+        By conditioning on a rendering of the robot's actions, our video world model simulates the robot's interaction with the scene shown in the reference frame. We show that its simulated rollouts align with real-world execution (<em>GT</em>).
+      </p>
+
+    
+
+      <!-- <article class="example">
+        <h3 class="example-title">RoboCasa &mdash; Close Microwave</h3>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">Reference</div>
+            <img class="ref-img" src="assets/policy_eval/robocasa_close_microwave/reference_image.png" alt="Reference image" />
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Ours</div>
+            <div class="cell-label">Ground truth</div>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/cond1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/output1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/gt1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/cond2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/output2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/gt2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="example">
+        <h3 class="example-title">RoboCasa &mdash; Open Drawer</h3>
+        <div class="example-grid">
+          <div class="ref-col">
+            <div class="cell-label">Reference</div>
+            <img class="ref-img" src="assets/policy_eval/robocasa_open_drawer/reference.png" alt="Reference image" />
+          </div>
+
+          <div class="rollouts">
+            <div class="cell-label">Masked visual action</div>
+            <div class="cell-label">Ours</div>
+            <div class="cell-label">Ground truth</div>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/cond1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/output1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/gt1.mp4" autoplay loop muted playsinline preload="metadata"></video>
+
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/cond2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/output2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/gt2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </article> 
+ -->
+
+      <article class="example">
+        <!-- <h3 class="example-title">Real-World &mdash; Towel</h3> -->
+        <!-- <p class="example-note">
+          We also collect demonstrations from the real world, and show that different action trajectories lead to different outcomes. On the towel example, note that the model matches the ground truth demonstration on when the towel gets picked up and when it doesn't.
+        </p> -->
+        <div class="cmp-grid cmp-grid--4">
+          <div class="cell-label">Reference</div>
+          <div class="cell-label">Masked visual action</div>
+          <div class="cell-label">Ours</div>
+          <div class="cell-label">Ground truth</div>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/towel/ep09_seed789_reference.png"     alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel/cond_ep09_seed789_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel/render_ep09_seed789.mp4"       autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel/gt_ep09_seed789_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_reference.png"     alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_control.mp4"     autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/rendering_ep10_seed456.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_gt.mp4"          autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article>
+
+
+      <!-- <article class="example">
+        <h3 class="example-title">Real-World &mdash; Plushie</h3>
+        <p class="example-note">
+          Two trials starting from a similar reset state. Reset states cannot be reproduced
+          exactly in the real world, so each trial has its own reference image.
+        </p>
+        <div class="cmp-grid cmp-grid--4">
+          <div class="cell-label">Reference</div>
+          <div class="cell-label">Masked visual action</div>
+          <div class="cell-label">Ours</div>
+          <div class="cell-label">Ground truth</div>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/plushie/ep20_seed123_reference.png"    alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/cond_ep20_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/rendering_ep20_seed123.mp4"    autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/gt_ep20_seed123_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+
+          <img        class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_reference.png"   alt="Reference" />
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_control.mp4"   autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/rendering_ep21_seed456.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </article> -->
+
+        <p class="lede">
+        See our full 80 real-world demonstrations alongside the model simulation across four different tasks
+        <a href="assets/luey_gallery/index.html" target="_blank" rel="noopener">here</a>.
+      </p>
     </div>
   </section>
 
@@ -217,120 +336,6 @@
           </div>
         </div>
       </details>
-    </div>
-  </section>
-
-  <section class="section" id="policy-eval">
-    <div class="container">
-      <h2>Policy Evaluation</h2>
-      <p class="lede">
-        Our model can be used to evaluate the policy's action without needing to execute them in the real world. Here we show how our world model's simulated output is aligned with the real world execution (<em>GT</em>).
-      </p>
-
-    
-
-      <!-- <article class="example">
-        <h3 class="example-title">RoboCasa &mdash; Close Microwave</h3>
-        <div class="example-grid">
-          <div class="ref-col">
-            <div class="cell-label">Reference</div>
-            <img class="ref-img" src="assets/policy_eval/robocasa_close_microwave/reference_image.png" alt="Reference image" />
-          </div>
-
-          <div class="rollouts">
-            <div class="cell-label">Masked visual action</div>
-            <div class="cell-label">Ours</div>
-            <div class="cell-label">Ground truth</div>
-
-            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/cond1.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/output1.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/gt1.mp4" autoplay loop muted playsinline preload="metadata"></video>
-
-            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/cond2.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/output2.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_close_microwave/gt2.mp4" autoplay loop muted playsinline preload="metadata"></video>
-          </div>
-        </div>
-      </article>
-
-
-      <article class="example">
-        <h3 class="example-title">RoboCasa &mdash; Open Drawer</h3>
-        <div class="example-grid">
-          <div class="ref-col">
-            <div class="cell-label">Reference</div>
-            <img class="ref-img" src="assets/policy_eval/robocasa_open_drawer/reference.png" alt="Reference image" />
-          </div>
-
-          <div class="rollouts">
-            <div class="cell-label">Masked visual action</div>
-            <div class="cell-label">Ours</div>
-            <div class="cell-label">Ground truth</div>
-
-            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/cond1.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/output1.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/gt1.mp4" autoplay loop muted playsinline preload="metadata"></video>
-
-            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/cond2.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/output2.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <video class="vid-cell" src="assets/policy_eval/robocasa_open_drawer/gt2.mp4" autoplay loop muted playsinline preload="metadata"></video>
-          </div>
-        </div>
-      </article> 
- -->
-
-      <article class="example">
-        <h3 class="example-title">Real-World &mdash; Towel</h3>
-        <p class="example-note">
-          We also collect demonstrations from the real world, and show that different action trajectories lead to different outcomes. On the towel example, note that the model matches the ground truth demonstration on when the towel gets picked up and when it doesn't.
-        </p>
-        <div class="cmp-grid cmp-grid--4">
-          <div class="cell-label">Reference</div>
-          <div class="cell-label">Masked visual action</div>
-          <div class="cell-label">Ours</div>
-          <div class="cell-label">Ground truth</div>
-
-          <img        class="vid-cell" src="assets/policy_eval/real_world/towel/ep09_seed789_reference.png"     alt="Reference" />
-          <video class="vid-cell" src="assets/policy_eval/real_world/towel/cond_ep09_seed789_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/towel/render_ep09_seed789.mp4"       autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/towel/gt_ep09_seed789_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
-
-          <img        class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_reference.png"     alt="Reference" />
-          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_control.mp4"     autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/rendering_ep10_seed456.mp4"   autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/towel2/ep10_seed456_gt.mp4"          autoplay loop muted playsinline preload="metadata"></video>
-        </div>
-      </article>
-
-
-      <article class="example">
-        <h3 class="example-title">Real-World &mdash; Plushie</h3>
-        <p class="example-note">
-          Two trials starting from a similar reset state. Reset states cannot be reproduced
-          exactly in the real world, so each trial has its own reference image.
-        </p>
-        <div class="cmp-grid cmp-grid--4">
-          <div class="cell-label">Reference</div>
-          <div class="cell-label">Masked visual action</div>
-          <div class="cell-label">Ours</div>
-          <div class="cell-label">Ground truth</div>
-
-          <img        class="vid-cell" src="assets/policy_eval/real_world/plushie/ep20_seed123_reference.png"    alt="Reference" />
-          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/cond_ep20_seed123_control.mp4" autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/rendering_ep20_seed123.mp4"    autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/plushie/gt_ep20_seed123_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
-
-          <img        class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_reference.png"   alt="Reference" />
-          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_control.mp4"   autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/rendering_ep21_seed456.mp4" autoplay loop muted playsinline preload="metadata"></video>
-          <video class="vid-cell" src="assets/policy_eval/real_world/plushie2/ep21_seed456_gt.mp4"        autoplay loop muted playsinline preload="metadata"></video>
-        </div>
-      </article>
-
-        <p class="lede">
-        See our full real-world demonstrations alongside the model simulation across four different tasks
-        <a href="assets/luey_gallery/index.html" target="_blank" rel="noopener">here</a>.
-      </p>
     </div>
   </section>
 
@@ -529,8 +534,8 @@
     // ----- Teaser carousel: inputs on top, output below (2-up), advancing when the output finishes -----
     const TB = 'assets/teaser_vids/';
     const TEASER_EXAMPLES = [
-      { label: 'Towel pickup',       ref: 'towel_demo01_reference.png',  control: 'towel_demo01_control.mp4',  output: 'towel_demo01_generated.mp4' },
-      { label: 'Mug motion',  ref: 'orange_mug_reference.png',    control: 'orange_mug_control.mp4',    output: 'orange_mug_output.mp4' },
+      { label: 'Forward modeling',   ref: 'towel_demo01_reference.png',  control: 'towel_demo01_control.mp4',  output: 'towel_demo01_generated.mp4' },
+      { label: 'Inverse modeling',   ref: 'orange_mug_reference.png',    control: 'orange_mug_control.mp4',    output: 'orange_mug_output.mp4' },
       { label: 'Orangutan sawing',   ref: 'orangutan_reference.png',     control: 'orangutan_control.mp4',     output: 'orangutan_output.mp4' },
       { label: 'R1 Pro',      ref: 'r1pro_reference.png',         control: 'r1pro_control.mp4',         output: 'r1pro_output.mp4' },
       { label: 'BEHAVIOR1k',    ref: 'behavior_reference.png',      control: 'behavior_control.mp4',      output: 'behavior_output.mp4' },
