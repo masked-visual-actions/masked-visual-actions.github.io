@@ -126,6 +126,7 @@ html, body {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.9em;
 }
+.link-btn .ai { font-size: 1.05em; line-height: 1; }
 
 /* ---------- Sticky section nav ---------- */
 .section-nav {

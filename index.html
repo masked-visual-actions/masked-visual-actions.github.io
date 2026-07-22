@@ -11,6 +11,8 @@
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="theme_aurora.css" />
+  <!-- Academicons: provides the arXiv logo glyph -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css" />
 </head>
 <body>
   <header class="hero">
@@ -38,9 +40,11 @@
       </ol>
 
       <nav class="links" aria-label="Resource links">
-        <!-- TODO: replace href="#" with the arXiv abstract URL -->
-        <a class="link-btn" href="paper.pdf" aria-label="Paper on arXiv">
+        <a class="link-btn" href="paper.pdf" aria-label="Paper (PDF)">
           <span class="link-ico" aria-hidden="true">&#128196;</span> Paper
+        </a>
+        <a class="link-btn" href="https://arxiv.org/abs/2607.19343" aria-label="Paper on arXiv" target="_blank" rel="noopener">
+          <i class="ai ai-arxiv" aria-hidden="true"></i> arXiv
         </a>
         <!-- TODO: replace href="#" with the GitHub repository URL -->
         <a class="link-btn" href="https://github.com/HadiZayer/masked-visual-actions" aria-label="Code on GitHub">
@@ -494,15 +498,17 @@
   <section class="section" id="bibtex">
     <div class="container">
       <h2>BibTeX</h2>
-      <!-- TODO: replace the arXiv id / eprint with the real one once posted -->
-      <pre class="bibtex"><code>@article{alzayer2026maskedvisualactions,
-  title   = {Masked Visual Actions for Unified World Modeling},
-  author  = {Alzayer, Hadi and Huang, Wenlong and Chen, Haonan and
-             Luey, Christopher and Zhang, Lvmin and Agrawala, Maneesh and
-             Wetzstein, Gordon and Fei-Fei, Li and Du, Yilun and
-             Wu, Jiajun and Huang, Jia-Bin},
-  journal = {arXiv preprint arXiv:XXXX.XXXXX},
-  year    = {2026}
+      <pre class="bibtex"><code>@misc{alzayer2026maskedvisualactionsunified,
+  title         = {Masked Visual Actions for Unified World Modeling},
+  author        = {Hadi Alzayer and Wenlong Huang and Haonan Chen and
+                   Christopher Luey and Lvmin Zhang and Maneesh Agrawala and
+                   Gordon Wetzstein and Li Fei-Fei and Yilun Du and Jiajun Wu and
+                   Jia-Bin Huang},
+  year          = {2026},
+  eprint        = {2607.19343},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2607.19343}
 }</code></pre>
     </div>
   </section>
