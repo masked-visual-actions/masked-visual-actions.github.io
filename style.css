@@ -292,12 +292,26 @@ html { scroll-behavior: smooth; }
 }
 .io-v2 .inputs-row { gap: 0.4rem; margin-bottom: 0; }
 
+/* Extreme Generalization: two teaser-style stacks side by side */
+.xg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .xg-grid { grid-template-columns: 1fr; }
+}
+
 /* On phones the long "Masked visual action" label wraps to two lines while
    "Reference" stays one line; reserve equal (bottom-aligned) label height so
    the two input videos stay aligned. */
 @media (max-width: 640px) {
   /* the section nav is too cramped to be useful on phones */
   .section-nav { display: none; }
+
+  /* Extreme Generalization: show just the first example on phones */
+  .xg-extra { display: none; }
 
   .io-v2 .inputs-row .cell-label {
     display: flex;
@@ -582,6 +596,28 @@ h2 {
   padding: 0 1.25rem 1.25rem;
 }
 .collapsible-body .lede { margin-top: 0.5rem; }
+
+/* ---------- Citations & references ---------- */
+.cite {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85em;
+  padding-left: 0.08em;
+}
+.cite:hover { text-decoration: underline; }
+
+.references {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: var(--fg-soft);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+.references li { margin: 0.35rem 0; padding-left: 0.25rem; }
+.references li:target { color: var(--fg); }
+.references a { color: var(--accent); text-decoration: none; }
+.references a:hover { text-decoration: underline; }
 
 /* ---------- BibTeX ---------- */
 .bibtex {

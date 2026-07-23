@@ -70,7 +70,9 @@
       <a href="#inverse-modeling">Inverse Modeling</a>
       <a href="#conditioning">Conditioning Ablation</a>
       <a href="#comparison">Baseline Comparison</a>
+      <a href="#extreme-generalization">Extreme Generalization</a>
       <a href="#failure-cases">Failure Cases</a>
+      <a href="#references">References</a>
       <a href="#bibtex">BibTeX</a>
     </div>
   </nav>
@@ -430,7 +432,7 @@
     <div class="container">
       <h2>Comparison with Baselines</h2>
       <p class="lede">
-        We compare our method conditioned on Masked Visual Actions against Ctrl-World (both are trained on DROID), and also include Wan-Move (trajectory conditioned video model), and Wan2.2 I2V as a reference.
+        We compare our method conditioned on Masked Visual Actions against Ctrl-World<a class="cite" href="#ref-1">[1]</a> (both are trained on DROID), and also include Wan-Move<a class="cite" href="#ref-2">[2]</a> (trajectory conditioned video model), and Wan2.2 I2V<a class="cite" href="#ref-3">[3]</a> as a reference.
       </p>
 
       <!-- DROID -->
@@ -474,6 +476,47 @@
     </div>
   </section>
 
+  <section class="section" id="extreme-generalization">
+    <div class="container">
+      <h2>Extreme Generalization</h2>
+      <p class="lede">
+        For fun, we push generalization to the extreme: conditioning on the masked visual action of an
+        <em>orangutan</em> &mdash; an embodiment far outside anything seen during training. The model
+        still completes the scene to follow the provided action.
+      </p>
+
+      <div class="xg-grid">
+        <div class="stack io-v2">
+          <div class="io-panel io-panel-in">
+            <div class="io-head">Inputs</div>
+            <div class="inputs-row">
+              <div><div class="cell-label">Reference</div><img class="vid-cell" src="assets/teaser_vids/orangutan_reference.png" alt="Reference" /></div>
+              <div><div class="cell-label">Masked visual action</div><video class="vid-cell" src="assets/teaser_vids/orangutan_control.mp4" autoplay loop muted playsinline preload="metadata"></video></div>
+            </div>
+          </div>
+          <div class="io-panel io-panel-out">
+            <div class="io-head">Output</div>
+            <video class="vid-cell" src="assets/teaser_vids/orangutan_output.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+
+        <div class="stack io-v2 xg-extra">
+          <div class="io-panel io-panel-in">
+            <div class="io-head">Inputs</div>
+            <div class="inputs-row">
+              <div><div class="cell-label">Reference</div><img class="vid-cell" src="assets/teaser_vids/orangutan2_reference.png" alt="Reference" /></div>
+              <div><div class="cell-label">Masked visual action</div><video class="vid-cell" src="assets/teaser_vids/orangutan2_control.mp4" autoplay loop muted playsinline preload="metadata"></video></div>
+            </div>
+          </div>
+          <div class="io-panel io-panel-out">
+            <div class="io-head">Output</div>
+            <video class="vid-cell" src="assets/teaser_vids/orangutan2_output.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="failure-cases">
     <div class="container">
       <h2>Failure Cases</h2>
@@ -497,6 +540,17 @@
         <video class="vid-cell" src="assets/failure_cases/example2/ep18_seed123.mp4"         autoplay loop muted playsinline preload="metadata"></video>
         <video class="vid-cell" src="assets/failure_cases/example2/ep18_seed123_gt.mp4"      autoplay loop muted playsinline preload="metadata"></video>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="references">
+    <div class="container">
+      <h2>References</h2>
+      <ol class="references">
+        <li id="ref-1">Guo et al. <em>Ctrl-World: A Controllable Generative World Model for Robot Manipulation.</em> ICLR 2026.</li>
+        <li id="ref-2">Chu et al. <em>Wan-Move: Motion-Controllable Video Generation via Latent Trajectory Guidance.</em> arXiv:<a href="https://arxiv.org/abs/2512.08765" target="_blank" rel="noopener">2512.08765</a>, 2025.</li>
+        <li id="ref-3">Wan Team et al. <em>Wan: Open and Advanced Large-Scale Video Generative Models.</em> arXiv:<a href="https://arxiv.org/abs/2503.20314" target="_blank" rel="noopener">2503.20314</a>, 2025.</li>
+      </ol>
     </div>
   </section>
 
@@ -536,7 +590,6 @@
     const TEASER_EXAMPLES = [
       { label: 'Forward modeling',   ref: 'towel_demo01_reference.png',  control: 'towel_demo01_control.mp4',  output: 'towel_demo01_generated.mp4' },
       { label: 'Inverse modeling',   ref: 'orange_mug_reference.png',    control: 'orange_mug_control.mp4',    output: 'orange_mug_output.mp4' },
-      { label: 'Orangutan sawing',   ref: 'orangutan_reference.png',     control: 'orangutan_control.mp4',     output: 'orangutan_output.mp4' },
       { label: 'R1 Pro',      ref: 'r1pro_reference.png',         control: 'r1pro_control.mp4',         output: 'r1pro_output.mp4' },
       { label: 'BEHAVIOR1k',    ref: 'behavior_reference.png',      control: 'behavior_control.mp4',      output: 'behavior_output.mp4' },
       { label: 'RoboPanoptes', href: 'https://robopanoptes.github.io', ref: 'snake_robot_reference.png', control: 'snake_robot_control.mp4', output: 'snake_robot_output.mp4' },
