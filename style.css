@@ -93,6 +93,13 @@ html, body {
   color: var(--fg-soft);
 }
 
+.venue {
+  margin: 0.9rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
 /* ---------- Link buttons ---------- */
 .links {
   display: flex;
